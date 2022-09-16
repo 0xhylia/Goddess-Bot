@@ -20,6 +20,7 @@ Open config.json, and change everything
     "ownerID": "your-id",
     "guildID": "your-guild-id",
     "clientID": "your-client-id",
+    "mongo": "your-mongo-url"
 }
 ```
 
@@ -33,3 +34,9 @@ node deploy.js
 
 node .
 ```
+
+## What You Will Need.
+
+[MongoDB](https://account.mongodb.com/account/login)
+[Discord Developers](https://discord.com/developers/applications)
+[NodeJs](https://nodejs.org/)
