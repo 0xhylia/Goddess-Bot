@@ -38,5 +38,7 @@ node .
 ## What You Will Need.
 
 [MongoDB](https://account.mongodb.com/account/login)
+
 [Discord Developers](https://discord.com/developers/applications)
+
 [NodeJs](https://nodejs.org/)
