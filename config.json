@@ -1,9 +1,0 @@
-{
-    "port": "8080",
-    "token": "YOUR_TOKEN",
-    "prefix": "YOUR_PREFIX",
-    "ownerID": "YOUR_ID",
-    "guildID": "YOUR_GUILD_ID",
-    "clientID": "YOUR_CLIENT_ID",
-    "mongo": "YOUR_MONGO_URL"
-}
