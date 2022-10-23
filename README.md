@@ -16,13 +16,14 @@ Open config.json, and change everything
 ```json
 {
     "port": "8080",
-    "token": "your-token",
     "ownerID": "your-id",
     "guildID": "your-guild-id",
     "clientID": "your-client-id",
-    "mongo": "your-mongo-url"
 }
 ```
+
+Open sample.env, and add your things.
+
 
 
 
@@ -32,7 +33,7 @@ Open config.json, and change everything
 
 node deploy.js
 
-node .
+npm run dev
 ```
 
 ## What You Will Need.
