@@ -27,36 +27,72 @@ module.exports = {
             }
 
             const embed = new MessageEmbed()
-               .setTitle(`Akeno News`)
+                .setTitle(`Akeno News`)
                 .setDescription(`Here is the latest news from Akeno!`)
                 .setColor('PURPLE')
-                .setTimestamp() 
+                .setTimestamp()
                 .setFooter({
                     text: `Akeno News | \©️${new Date().getFullYear()}`,
                     iconURL: interaction.client.users.cache.get(ownerId).displayAvatarURL({ dynamic: true })
                 })
 
-                newsArray.forEach((news) => {
-                    embed.addField(`${news.title} || ${news.date}`, `${news.description}`);
-                })
+            newsArray.forEach((news) => {
+                embed.addField(`${news.title} || ${news.date}`, `${news.description}`);
+            })
 
-                const row = new MessageActionRow()
+            const row = new MessageActionRow()
                 .addComponents()
 
-                newsArray.forEach((news) => {
-                    row.addComponents(
+            newsArray.forEach((news) => {
+                row.addComponents(
+                    new MessageButton()
+                        .setStyle('PRIMARY')
+                        .setLabel(`${newsArray.indexOf(news) + 1}`)
+                        .setCustomId(`news-${newsArray.indexOf(news) + 1}`)
+                        .setEmoji('<:discordshop:1020094830451359795>')
+                )
+            })
+
+
+
+
+            interaction.reply({ embeds: [embed], components: [row] });
+
+
+            interaction.client.on('interactionCreate', async interaction => {
+                if (!interaction.isButton()) return;
+                if (interaction.customId.startsWith('news-')) {
+                    const newsNumber = interaction.customId.split('-')[1];
+                    const news = newsArray[newsNumber - 1];
+                    const newsEmbed = new MessageEmbed()
+                        .setTitle(`${news.title}`)
+                        .setDescription(`${news.description}`)
+                        .setColor('PURPLE')
+                        .setTimestamp()
+                        .setFooter({
+                            text: `Akeno News | \©️${new Date().getFullYear()}`,
+                            iconURL: interaction.client.users.cache.get(ownerId).displayAvatarURL({ dynamic: true })
+                        })
+
+                    
+                    const newsImage = news.image.replace('./assets/img/', '');
+
+                    newsEmbed.setImage(`https://akenodev.xyz/assets/img/${newsImage}`);
+
+                    const row2 = new MessageActionRow()
+                    .addComponents(
                         new MessageButton()
                             .setStyle('LINK')
-                            // Set the label to the number of the news
-                            .setLabel(`${newsArray.indexOf(news) + 1}`)
+                            .setLabel(`Go to Link`)
                             .setURL(`${news.link}`)
-                            //.setEmoji('🔗')
-                            .setEmoji('<:discordshop:1020094830451359795>')
+                            .setEmoji('🔗')
+                            
                     )
-                })
 
-            
-                interaction.reply({ embeds: [embed], components: [row]});
+                    interaction.update({ embeds: [newsEmbed], components: [row2, row] });
+
+                }
+            })
 
 
         })
