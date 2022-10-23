@@ -22,7 +22,7 @@ module.exports = {
 
     const options = {
       method: "GET",
-      url: `http://localhost:8080/user/${user.id}?log=true`,
+      url: `https://bot.akenodev.xyz/user/${user.id}?log=true`,
       headers: {
         "Content-Type": "application/json",
         "User-Agent": "DiscordBot (https://discord.com, 0.0.1)",
