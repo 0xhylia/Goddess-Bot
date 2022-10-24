@@ -2,6 +2,7 @@ let fs = require('fs');
 const mongoose = require("mongoose");
 const Logger = require('../utils/Logger');
 const logger = new Logger({ debug: true });
+const axios = require('axios').default;
 
 
 
@@ -45,5 +46,31 @@ module.exports = {
   db.once("open", () => {
     logger.info("Connected to the database!");
   });
+		
+		 setInterval(() => {
+
+    const options = {
+      method: 'GET',
+      url: 'https://akenodev.xyz',
+    }
+
+    axios.request(options).then(function (response) {
+      const status = response.status;
+
+      if (status === 200) {
+        client.channels.cache.get('1033922333099970650').setName(`🟢 | akenodev.xyz`);
+        logger.info(`akenodev.xyz is online!`);
+      }
+      if (status === 500) {
+        client.channels.cache.get('1033922333099970650').setName(`🟡 | akenodev.xyz`);
+        logger.info(`akenodev.xyz is offline!`);
+      }
+      if (status === 503) {
+        client.channels.cache.get('1033922333099970650').setName(`🟠 | akenodev.xyz`);
+        logger.info(`akenodev.xyz is temporarily down!`);
+      }
+    })
+
+  }, 5000);
 	},
 };
