@@ -35,7 +35,7 @@ module.exports = {
                 .setColor('PURPLE')
                 .setTimestamp()
                 .setFooter({
-                    text: `${interaction.client.users.cache.get(ownerId).tag} | \©️${new Date().getFullYear()}`,
+                    text: `Akeno Clients | \©️${new Date().getFullYear()}`,
                     iconURL: interaction.client.users.cache.get(ownerId).displayAvatarURL({ dynamic: true })
                 })
 
@@ -77,7 +77,7 @@ module.exports = {
                     .setColor('PURPLE')
                     .setTimestamp()
                     .setFooter({
-                        text: `${interaction.client.users.cache.get(ownerId).tag} | \©️${new Date().getFullYear()}`,
+                        text: `Akeno Clients | \©️${new Date().getFullYear()}`,
                         iconURL: interaction.client.users.cache.get(ownerId).displayAvatarURL({ dynamic: true })
                     })
 
