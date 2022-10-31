@@ -14,7 +14,7 @@ module.exports = {
 
         const options = {
             method: 'GET',
-            url: 'https://akenodev.xyz/api/clients',
+            url: 'https://akenodev.xyz/api/v1/clients',
         }
 
         axios.request(options).then(function (response) {
