@@ -14,7 +14,7 @@ module.exports = {
 
         const options = {
             method: 'GET',
-            url: 'https://akenodev.xyz/v1/projects',
+            url: 'https://akenodev.xyz/api/v1/projects',
         }
         //row.addComponents(
         //     new MessageButton()
