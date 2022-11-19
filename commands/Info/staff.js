@@ -11,7 +11,7 @@ module.exports = {
 
     // console.log(staffRole)
     await interaction.guild.members.fetch() //cache all members in the server
-    const role = interaction.guild.roles.cache.find(role => role.id === "981632156809981952") //the role to check
+    const role = interaction.guild.roles.cache.find(role => role.id === "1014531229212737626") //the role to check
     const totalStaff = role.members.map(m => m.id) // array of user IDs who have the role
     const totalMembers = totalStaff.length // how many users have the role
 

@@ -47,11 +47,6 @@ module.exports = {
               .setLabel('Website')
               .setURL("https://akenodev.xyz")
               .setStyle('LINK'),
-              new MessageButton()
-              .setEmoji("<:EA_partnership:1014193886161281126>")
-              .setLabel("Echo Anime")
-              .setURL("https://echoanime.xyz")
-              .setStyle("LINK"),
               
       );
   interaction.reply({ embeds: [embed], components: [row] });  
