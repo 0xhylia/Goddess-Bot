@@ -15,7 +15,7 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setTitle("Get isekai'ed nerd!")
-            .setDescription("Join the [Tchan Server](" + tchanServer + ") to meet who isekai'ed you!")
+            .setDescription("Join the [Truck chan Server](" + tchanServer + ") to meet who isekai'ed you!")
             .setColor('RANDOM')
             .setTimestamp()
             .setImage("https://wallpaperaccess.com/full/4794720.jpg")
