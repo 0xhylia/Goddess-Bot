@@ -98,7 +98,7 @@ module.exports = {
                         })
                         .addField(`Role`, `${projectRole}`)
                         .addField(`Link`, `[Click Here](${project.button.url})`)
-                        .setThumbnail(`https://akenodev.xyz/assets/img/${image}`)
+                        .setThumbnail(`https://akenodev.me/assets/img/${image}`)
 
                     interaction.update({ embeds: [projectEmbed] });
                 }

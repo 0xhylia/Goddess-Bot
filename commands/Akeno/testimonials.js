@@ -70,7 +70,7 @@ module.exports = {
                 const clientEmbed = new MessageEmbed()
                     .setTitle(`⭐ ${client.rating}`)
                     .setDescription(`${client.discription}`)
-                    .setAuthor(`${client.name}`, `https://akenodev.xyz/assets/img/${image}`, `${client.whois.url}`)
+                    .setAuthor(`${client.name}`, `https://akenodev.me/assets/img/${image}`, `${client.whois.url}`)
                     .addField(`Is Member in Server`, `${client.isInServer}`)
                     .addField(`Did Member Contribute to Github Repo?`, `${client.didContributeToRepo}`)
                     .addField(`Who is ${client.name}?`, `[${client.whois.name}](${client.whois.url})`)
