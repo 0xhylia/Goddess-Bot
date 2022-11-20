@@ -77,7 +77,7 @@ module.exports = {
                     
                     const newsImage = news.image.replace('./assets/img/', '');
 
-                    newsEmbed.setImage(`https://akenodev.xyz/assets/img/${newsImage}`);
+                    newsEmbed.setImage(`https://akenodev.me/assets/img/${newsImage}`);
 
                     const row2 = new MessageActionRow()
                     .addComponents(
