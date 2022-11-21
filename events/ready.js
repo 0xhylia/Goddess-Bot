@@ -19,8 +19,9 @@ module.exports = {
   const activitiesList = [
     `${commands} Commands`,
     `with ${client.users.cache.size} users`,
-    `https://akenodev.xyz`,
+    `https://akenodev.me`,
     `https://github.com/akenolol/Goddess-Bot`,
+    `redcafe.lol`
   ];
 
   setInterval(() => {
