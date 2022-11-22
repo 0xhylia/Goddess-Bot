@@ -8,7 +8,7 @@ const {
   MessageCollector,
 } = require("discord.js");
 
-const { ownerID, logFolder } = require("./config.json");
+const { ownerID, logFolder } = require("./config.json")
 const dotenv = require("dotenv");
 
 dotenv.config();
