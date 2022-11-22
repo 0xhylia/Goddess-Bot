@@ -355,6 +355,46 @@ client.on("guildMemberAdd", (member) => {
   });
 })
 
+client.on("messageCreate", async (message) => {
+  if (message.webhookId) {
+
+    if (message.webhookId != "1044682928472477706") return;
+
+    const messageembeds = message.embeds;
+
+    const embed = new MessageEmbed()
+      .setTitle("New Github Commit")
+      .setAuthor({
+        name: messageembeds[0].author.name,
+        iconURL: messageembeds[0].author.iconURL,
+        url: messageembeds[0].url,
+      })
+      .setDescription(messageembeds[0].description)
+      .setColor("GREEN")
+      .setFooter({
+        text: messageembeds[0].title,
+        iconURL: `https://cdn.discordapp.com/emojis/1020094894540337232.webp?size=96&quality=lossless`,
+      })
+
+      const row = new MessageActionRow()
+      .addComponents(
+        new MessageButton()
+          .setEmoji("🌐")
+          .setLabel("Commit Url")
+          .setURL(`${messageembeds[0].url}`)
+          .setStyle("LINK"),
+      );
+
+
+    client.channels.cache.get(process.env.githubUpdateChannel).send({ embeds: [embed], components: [row] });
+  
+      
+  }
+
+  else {
+    return;
+  }
+})
 
 app.get("/", (req, res) => {
   res.json({
