@@ -358,7 +358,7 @@ client.on("guildMemberAdd", (member) => {
 client.on("messageCreate", async (message) => {
   if (message.webhookId) {
 
-    if (message.webhookId != "1044682928472477706") return;
+    if (message.webhookId != "1044689178627158037") return;
 
     const messageembeds = message.embeds;
 
