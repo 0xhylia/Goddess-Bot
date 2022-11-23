@@ -1,5 +1,6 @@
 const chalk = require('chalk');
 const TIME = new Date();
+
 class Logger {
     constructor(options) {
         this.options = options;
