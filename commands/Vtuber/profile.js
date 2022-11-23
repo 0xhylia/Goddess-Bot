@@ -49,7 +49,7 @@ module.exports = {
             if (profile.discord != "None") embed.addField(`<:discord:996939280205217862> Discord`, profile.discord, true);
             if (profile.description) embed.setDescription(profile.description);
             if (profile.isPremium) embed.addField(`<:verified:996939278485561424> Premium`, `Yes`, true);
-            if (profile.throne) embed.addField(`🎁 Throne`, profile.throne, true);
+             if (profile.throne != "None") embed.addField(`🎁 Throne`, profile.throne, true);
             if (profile.nickname != "None") {
                 embed.addField(`<:ticketbadge:1020094894540337232> Nickname`, profile.nickname, true);
                 embed.setTitle(`Vtuber Profile for ${user.username} (${profile.nickname})`);
