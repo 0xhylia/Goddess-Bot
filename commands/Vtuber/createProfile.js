@@ -121,7 +121,7 @@ module.exports = {
            
 
             function checkForPremium() {
-                if (interaction.member.roles.cache.has("1006952317679046723")) {
+                if (interaction.member.roles.cache.has("1014212532715667487")) {
                     return true;
                 } else {
                     return false;
