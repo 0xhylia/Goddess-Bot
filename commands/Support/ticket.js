@@ -30,12 +30,6 @@ module.exports = {
         .setPlaceholder("Nothing selected")
         .addOptions([
           {
-            label: "Echo Anime",
-            description: "Report a bug or request a feature for Echo Anime",
-            value: "echoanime_option",
-            emoji: "📺",
-          },
-          {
             label: "Discord Bot",
             description:
               "Report a bug or request a feature for the Discord Bot",
