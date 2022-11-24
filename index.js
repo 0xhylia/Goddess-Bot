@@ -397,76 +397,24 @@ client.on("messageCreate", async (message) => {
 })
 
 app.get("/", (req, res) => {
-  res.json({
-    status: "200",
-    message: "Use /user/ID to access user data",
-    example: "https://bot.akenodev.xyz/user/1010732299966484531?log=true",
-    note: "This is a public API, so please don't abuse it!",
-  });
+  res.json(client)
 })
 
-app.get("/user/:id", (req, res) => {
-  const id = req.params.id;
-  const user = client.users.cache.get(id);
-  const log = req.query.log;
-  const botHeader = req.headers["User-Agent"];
-  if (botHeader === "DiscordBot (https://discord.com, 0.0.1)") {
-    res.json({
-      status: "200",
-      message: "You are a bot, so you cannot access this API.",
-    });
-  }
-  else {
-
-    if (!user) {
-      res.json({
-        status: "404",
-        message: "User not found!",
-      });
-    }
-  }
-
-  const userData = {
-    UserManager: {
-      id: user.id,
-      username: user.username,
-      discriminator: user.discriminator,
-      avatar: user.avatarURL({ dynamic: true }),
-      bot: user.bot,
-      created: user.createdAt,
-      system: user.system,
-      flags: user.flags,
-      tag: `${user.username}#${user.discriminator}`,
-      
-    },
-
-  }
-
-  if (log === "true") {
-    // Check if /logs/${id}.log exists
-    if (fs.existsSync(`./logs/${id}.log`)) {}
-    fs.readFile("./logs/" + id + ".log", "utf8", (err, data) => {
-      if (err) {
-        res.json({
-          status: "404",
-          message: "File not found!",
-        });
-      }
-      else {
-        res.json({
-          status: "200",
-          message: "User data found!",
-          data: data,
-        });
-      }
-    })
-  }
-
-  else {
-
-    res.json(userData);
-  }
+app.get("/api/vtubers", (req, res) => {
+  const vtuberProfile = require("./models/vtuberProfile");
+  vtuberProfile.find({}, (err, data) => {
+    if (err) throw err;
+    res.json(data);
+  })
 });
+
+app.get("/api/vtubers/:id", (req, res) => {
+  const vtuberProfile = require("./models/vtuberProfile");
+  vtuberProfile.findOne({ id: req.params.id }, (err, data) => {
+    if (err) throw err;
+    res.json(data);
+  })
+})
 
 
 
