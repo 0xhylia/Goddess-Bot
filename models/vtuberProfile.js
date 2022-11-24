@@ -13,11 +13,13 @@ const vtuberSchema = new Schema({
     tiktok: String,
     discord: String,
     isPremium: Boolean,
+    isStaff: Boolean,
     description: String,
     banner: String,
     nickname: String,
     throne: String,
-    dateCreated: Date,
+    vtuberModal: String,
+
 
 })
 
