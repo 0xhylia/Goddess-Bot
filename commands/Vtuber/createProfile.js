@@ -131,31 +131,7 @@ module.exports = {
         const isPremium = checkForPremium();
         const isStaff = checkForStaff();
 
-        if (!isPremium || !isStaff) {
-            if (banner != null) {
-                const embed = new MessageEmbed()
-                    .setTitle(`Vtuber Profile`)
-                    .setDescription(`You cannot have a banner without being a premium member or staff!`)
-                    .setColor("PURPLE")
-                    .setFooter({
-                        text: `Vtuber Profile`,
-                        iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
-                    })
-                return interaction.reply({ embeds: [embed] });
-            }
-
-            if (nickname != null) {
-                const embed = new MessageEmbed()
-                    .setTitle(`Vtuber Profile`)
-                    .setDescription(`You cannot have a nickname without being a premium member or staff!`)
-                    .setColor("PURPLE")
-                    .setFooter({
-                        text: `Vtuber Profile`,
-                        iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
-                    })
-                return interaction.reply({ embeds: [embed] });
-            }
-        }
+        
 
         await vtuberProfile.create({
             userId: user.id,
