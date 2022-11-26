@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const Logger = require('../utils/Logger');
 const logger = new Logger({ debug: true });
 const axios = require('axios').default;
-
-
+const { MessageEmbed } = require('discord.js');
+const versionControl = require('../utils/templates/versionControl');
+const { version } = require('../package.json');
+const updateChannel = "1024042956069535797";
 
 module.exports = {
 	name: 'ready',
@@ -21,7 +23,7 @@ module.exports = {
     `with ${client.users.cache.size} users`,
     `https://akenodev.me`,
     `https://github.com/akenolol/Goddess-Bot`,
-    `redcafe.lol`
+    `/help`
   ];
 
   setInterval(() => {
@@ -47,31 +49,35 @@ module.exports = {
   db.once("open", () => {
     logger.info("Connected to the database!");
   });
-		
-// 		 setInterval(() => {
 
-//     const options = {
-//       method: 'GET',
-//       url: 'https://akenodev.xyz',
-//     }
+    if (versionControl[version].updateNumber = version) {
+      let lastMessage = await client.channels.cache.get(updateChannel).messages.fetch({ limit: 1 });
+      let lastMessageContent = lastMessage.first().content;
+      let updateNumber = versionControl[version].updateNumber;
 
-//     axios.request(options).then(function (response) {
-//       const status = response.status;
+      if (lastMessageContent.includes(updateNumber)) {
+        logger.warn("The last message in the update channel is the same as the current update, skipping...");
 
-//       if (status === 200) {
-//         client.channels.cache.get('1033922333099970650').setName(`🟢 | akenodev.xyz`);
-//         logger.info(`akenodev.xyz is online!`);
-//       }
-//       if (status === 500) {
-//         client.channels.cache.get('1033922333099970650').setName(`🟡 | akenodev.xyz`);
-//         logger.info(`akenodev.xyz is offline!`);
-//       }
-//       if (status === 503) {
-//         client.channels.cache.get('1033922333099970650').setName(`🟠 | akenodev.xyz`);
-//         logger.info(`akenodev.xyz is temporarily down!`);
-//       }
-//     })
+      }
+      else {
 
-//   }, 5000);
+        const updateEmbed = new MessageEmbed()
+            .setColor("#00FF00")
+            .setTitle(`Update ${versionControl[version].updateNumber}`)
+            .setDescription(versionControl[version].description)
+            .setAuthor(versionControl[version].updateAuthor.name, versionControl[version].updateAuthor.avatar, `https://discord.com/users/${versionControl[version].updateAuthor.id}`)
+            .setTimestamp()
+
+            versionControl[version].features.forEach(feature => {
+                updateEmbed.addField("Feature", feature)
+            })
+        client.channels.cache.get(updateChannel).send({ embeds: [updateEmbed], content: `New Update! ${versionControl[version].updateNumber}` });
+        }
+    }
+
+    else {
+        throw new Error("The version number in the versionControl.js file does not match the version number in the package.json file.")
+    }
+
 	},
 };
