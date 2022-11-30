@@ -6,7 +6,7 @@ const axios = require('axios').default;
 const { MessageEmbed } = require('discord.js');
 const versionControl = require('../utils/templates/versionControl');
 const { version } = require('../package.json');
-const updateChannel = "1024042956069535797";
+const updateChannel = process.env.updateChannel;
 
 module.exports = {
 	name: 'ready',
@@ -50,33 +50,29 @@ module.exports = {
     logger.info("Connected to the database!");
   });
 
-    if (versionControl[version].updateNumber = version) {
-      let lastMessage = await client.channels.cache.get(updateChannel).messages.fetch({ limit: 1 });
-      let lastMessageContent = lastMessage.first().content;
-      let updateNumber = versionControl[version].updateNumber;
+    // Check if updateChannel contains versionControl.updateNumber
+    const channel = client.channels.cache.get(updateChannel);
+    const messages = await channel.messages.fetch();
+    const message = messages.find((m) => m.content.includes(versionControl.updateNumber));
+    if (!message) {
+        // If it doesn't, send a new message
+        const embed = new MessageEmbed()
+            .setTitle(versionControl.title)
+            .setDescription(versionControl.description)
+            .setAuthor(versionControl.updateAuthor.name, versionControl.updateAuthor.avatar, `https://discord.com/users/${versionControl.updateAuthor.id}`)
+            .setFooter(`Update ${versionControl.updateNumber} | ${versionControl._date}`)
+            
 
-      if (lastMessageContent.includes(updateNumber)) {
-        logger.warn("The last message in the update channel is the same as the current update, skipping...");
-
-      }
-      else {
-
-        const updateEmbed = new MessageEmbed()
-            .setColor("#00FF00")
-            .setTitle(`Update ${versionControl[version].updateNumber}`)
-            .setDescription(versionControl[version].description)
-            .setAuthor(versionControl[version].updateAuthor.name, versionControl[version].updateAuthor.avatar, `https://discord.com/users/${versionControl[version].updateAuthor.id}`)
-            .setTimestamp()
-
-            versionControl[version].features.forEach(feature => {
-                updateEmbed.addField("Feature", feature)
-            })
-        client.channels.cache.get(updateChannel).send({ embeds: [updateEmbed], content: `New Update! ${versionControl[version].updateNumber}` });
-        }
+        versionControl.features.forEach((feature) => {
+            embed.addField("Feature", `<:9919discordinfo:1047563078029541386> ${feature}`);
+        })
+        channel.send({
+            embeds: [embed],
+            content: `New Update! ${versionControl.updateNumber}`,
+        })
     }
-
     else {
-        throw new Error("The version number in the versionControl.js file does not match the version number in the package.json file.")
+        logger.warn(`Update ${versionControl.updateNumber} already exists in ${channel.name}!`)
     }
 
 	},
